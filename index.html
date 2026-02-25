@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Implanted to Integrated — BCBA Tip Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1A6B72;
+    --teal-mid: #2A9BA3;
+    --teal-light: #A8D5D8;
+    --teal-pale: #E6F4F5;
+    --teal-dark: #0F4A50;
+    --amber: #E8A020;
+    --amber-pale: #FEF3DC;
+    --cream: #FAFAF7;
+    --dark: #1C2B2C;
+    --gray: #6B8C8F;
+    --gray-light: #B8CCCE;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .hero {
+    background: var(--teal-dark);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(168,213,216,0.15);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -30px; left: -30px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(168,213,216,0.1);
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+  .hero h1 em {
+    color: var(--amber);
+    font-style: italic;
+  }
+  .hero p {
+    color: var(--teal-light);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* ── Nav tabs ── */
+  .nav-tabs {
+    background: var(--teal);
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex-shrink: 0;
+    padding: 0.85rem 1.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--teal-light);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { color: var(--white); }
+  .nav-tab.active {
+    color: var(--white);
+    border-bottom-color: var(--amber);
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* ── Content panels ── */
+  .panel { display: none; padding: 2rem; max-width: 860px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* ── Problem panel ── */
+  .problem-box {
+    background: var(--white);
+    border-left: 5px solid var(--amber);
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(26,107,114,0.07);
+  }
+  .problem-box h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--amber);
+    margin-bottom: 0.6rem;
+  }
+  .problem-box p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #444;
+  }
+  .diagram-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 600px) { .diagram-row { grid-template-columns: 1fr; } }
+  .diagram-card {
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1.4rem;
+    box-shadow: 0 2px 12px rgba(26,107,114,0.06);
+  }
+  .diagram-card h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+  }
+  .diagram-card.current h3 { color: var(--gray); border-color: var(--gray-light); }
+  .diagram-card.integrated h3 { color: var(--teal); border-color: var(--teal-light); }
+
+  .bubble-diagram { position: relative; height: 220px; }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  /* Current model */
+  .b-school { width: 200px; height: 200px; border: 1.5px solid var(--teal-light); background: var(--teal-pale); top: 10px; left: 50%; transform: translateX(-50%); }
+  .b-classroom { width: 140px; height: 140px; border: 1px solid var(--teal-light); background: rgba(168,213,216,0.2); top: 45px; left: 50%; transform: translateX(-50%); }
+  .b-student { width: 50px; height: 50px; background: var(--teal-mid); top: 110px; left: 50%; transform: translateX(-50%); color: var(--white); font-size: 0.5rem; }
+  .b-aba { width: 90px; height: 90px; background: var(--amber-pale); border: 2px dashed var(--amber); top: 20px; left: 8px; color: var(--dark); }
+  .b-aba span { font-size: 0.65rem; font-weight: 600; }
+  .b-school-label { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono',monospace; font-size: 0.55rem; letter-spacing: 0.1em; color: var(--gray); text-transform: uppercase; }
+  .b-class-label { position: absolute; top: 48px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono',monospace; font-size: 0.5rem; letter-spacing: 0.08em; color: var(--teal-mid); text-transform: uppercase; }
+  .arrow-indicator {
+    position: absolute;
+    top: 108px; left: 96px;
+    font-size: 1.1rem;
+    color: var(--amber);
+    transform: rotate(30deg);
+  }
+  .x-indicator {
+    position: absolute;
+    bottom: 4px; left: 50%; transform: translateX(-50%);
+    font-size: 0.6rem;
+    color: var(--gray-light);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+
+  /* Integrated diagram */
+  .int-diagram { position: relative; height: 220px; }
+  .int-school-ring {
+    position: absolute;
+    width: 200px; height: 200px;
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    background: var(--teal-pale);
+    top: 10px; left: 50%; transform: translateX(-50%);
+  }
+  .int-bcba-ring {
+    position: absolute;
+    width: 160px; height: 160px;
+    border: 1.5px solid var(--teal-mid);
+    border-radius: 50%;
+    background: rgba(42,155,163,0.08);
+    top: 30px; left: 50%; transform: translateX(-50%);
+  }
+  .int-school-label { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono',monospace; font-size: 0.55rem; letter-spacing: 0.1em; color: var(--teal); text-transform: uppercase; }
+  .int-bcba-label { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono',monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--teal); font-weight: 600; text-transform: uppercase; }
+  .int-nodes {
+    position: absolute;
+    top: 10px; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 200px;
+  }
+  .int-node {
+    position: absolute;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.42rem;
+    color: var(--white);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+    cursor: default;
+  }
+  svg.connector-lines {
+    position: absolute;
+    top: 10px; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 200px;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  /* ── Tips panel ── */
+  .tip-card {
+    background: var(--white);
+    border-left: 4px solid var(--teal);
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 12px rgba(26,107,114,0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .tip-card:hover { box-shadow: 0 4px 20px rgba(26,107,114,0.12); }
+  .tip-header {
+    display: flex;
+    align-items: center;
+    padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    gap: 1rem;
+    user-select: none;
+  }
+  .tip-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--amber);
+    line-height: 1;
+    min-width: 36px;
+  }
+  .tip-title-wrap { flex: 1; }
+  .tip-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--teal);
+    margin-bottom: 0.15rem;
+  }
+  .tip-subtitle {
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-style: italic;
+  }
+  .tip-chevron {
+    font-size: 1rem;
+    color: var(--teal-light);
+    transition: transform 0.25s;
+  }
+  .tip-card.open .tip-chevron { transform: rotate(180deg); }
+  .tip-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .tip-card.open .tip-body { max-height: 600px; }
+  .tip-body-inner {
+    padding: 0 1.4rem 1.4rem 1.4rem;
+    border-top: 1px solid var(--teal-pale);
+    padding-top: 1rem;
+  }
+  .tip-body-inner p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #444;
+    margin-bottom: 0.8rem;
+  }
+  .tip-bullets { list-style: none; padding: 0; }
+  .tip-bullets li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    color: #555;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--teal-pale);
+  }
+  .tip-bullets li:last-child { border-bottom: none; }
+  .tip-bullets li::before {
+    content: '→';
+    color: var(--amber);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+  .research-pill {
+    display: inline-block;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.2rem 0.55rem;
+    margin-top: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Reflection panel ── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--teal-pale);
+  }
+  .reflection-card {
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 1px 8px rgba(26,107,114,0.05);
+  }
+  .reflection-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--teal);
+    margin-bottom: 0.7rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    background: var(--teal);
+    color: var(--white);
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+  }
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--teal-pale);
+    padding: 0.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 90px;
+    background: var(--cream);
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  textarea:focus { border-color: var(--teal-mid); background: var(--white); }
+  textarea::placeholder { color: var(--gray-light); }
+
+  /* ── Self-rating panel ── */
+  .rating-intro {
+    background: var(--teal);
+    color: var(--white);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .rating-intro strong { color: var(--amber); }
+  .rating-item {
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 6px rgba(26,107,114,0.05);
+  }
+  .rating-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .rating-item-label {
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--dark);
+    flex: 1;
+  }
+  .rating-item-tip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    background: var(--amber-pale);
+    color: var(--amber);
+    padding: 0.15rem 0.4rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .rating-scale {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .rating-scale-label {
+    font-size: 0.72rem;
+    color: var(--gray);
+    flex-shrink: 0;
+  }
+  .stars { display: flex; gap: 4px; }
+  .star {
+    width: 28px; height: 28px;
+    border: 2px solid var(--teal-light);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 600;
+    color: var(--teal-light);
+    transition: all 0.15s;
+    background: transparent;
+  }
+  .star:hover, .star.active {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--white);
+  }
+  .star.active-1 { background: #D4E8EA; border-color: #D4E8EA; color: var(--teal); }
+  .star.active-2 { background: #A8D5D8; border-color: #A8D5D8; color: var(--teal); }
+  .star.active-3 { background: var(--teal-mid); border-color: var(--teal-mid); color: var(--white); }
+  .star.active-4 { background: var(--teal); border-color: var(--teal); color: var(--white); }
+  .star.active-5 { background: var(--teal-dark); border-color: var(--teal-dark); color: var(--white); }
+
+  .score-summary {
+    margin-top: 2rem;
+    background: var(--teal-dark);
+    color: var(--white);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .score-big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .score-label { font-size: 0.8rem; color: var(--teal-light); margin-top: 0.3rem; }
+  .score-bar-track {
+    background: rgba(255,255,255,0.15);
+    height: 8px;
+    margin: 1rem auto;
+    max-width: 360px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    background: var(--amber);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+  .score-message {
+    font-size: 0.88rem;
+    color: var(--teal-pale);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  /* ── Resources panel ── */
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    box-shadow: 0 1px 6px rgba(26,107,114,0.05);
+    transition: box-shadow 0.2s;
+  }
+  .resource-card:hover { box-shadow: 0 3px 16px rgba(26,107,114,0.1); }
+  .resource-icon {
+    width: 36px; height: 36px;
+    background: var(--teal-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .resource-info { flex: 1; }
+  .resource-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--teal);
+    margin-bottom: 0.2rem;
+  }
+  .resource-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--amber);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .resource-desc {
+    font-size: 0.83rem;
+    color: #666;
+    line-height: 1.5;
+  }
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--teal-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .resource-link:hover { color: var(--teal); text-decoration: underline; }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--teal-dark);
+    color: var(--teal-light);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.78rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+    margin-top: 3rem;
+  }
+  .footer em {
+    display: block;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">BCBA Tip Sheet · School-Based Practice</div>
+    <h1>From <em>Implanted</em><br>to Integrated</h1>
+    <p>An interactive guide for BCBAs on moving beyond the RBT–student dyad to permeate the broader school ecosystem.</p>
+  </div>
+</div>
+
+<nav class="nav-tabs">
+  <div class="nav-tab active" onclick="showPanel('problem')">The Problem</div>
+  <div class="nav-tab" onclick="showPanel('tips')">5 Tips</div>
+  <div class="nav-tab" onclick="showPanel('reflection')">Reflection</div>
+  <div class="nav-tab" onclick="showPanel('rating')">Self-Rating</div>
+  <div class="nav-tab" onclick="showPanel('resources')">Resources</div>
+</nav>
+
+<!-- ── PANEL: The Problem ── -->
+<div class="panel active" id="panel-problem">
+  <div class="problem-box">
+    <h2>The Problem</h2>
+    <p>When a district contracts with an ABA agency, the typical model places a BCBA supervising an RBT in a 1:1 relationship with one student. The BCBA's focus stays within that dyad — while the classroom, teaching team, and school ecosystem remain largely untouched. Research calls this an <strong>"additive" or siloed model</strong>. The result: interventions that work in the bubble but don't generalize, and school staff who feel excluded rather than empowered.</p>
+  </div>
+
+  <div class="diagram-row">
+    <div class="diagram-card current">
+      <h3>Current Model</h3>
+      <div class="bubble-diagram">
+        <div class="bubble b-school"></div>
+        <span class="b-school-label">School</span>
+        <div class="bubble b-classroom"></div>
+        <span class="b-class-label">Classroom</span>
+        <div class="bubble b-student" title="The student receiving services">STUDENT</div>
+        <div class="bubble b-aba"><span>BCBA</span><br>+ RBT</div>
+        <div class="arrow-indicator">↘</div>
+        <div class="x-indicator">✕ no broader connection</div>
+      </div>
+    </div>
+    <div class="diagram-card integrated">
+      <h3>Integrated Model</h3>
+      <div class="int-diagram">
+        <div class="int-school-ring"></div>
+        <span class="int-school-label">School</span>
+        <div class="int-bcba-ring"></div>
+        <span class="int-bcba-label">BCBA</span>
+        <svg class="connector-lines" viewBox="0 0 200 200">
+          <!-- lines between nodes: teacher(100,60) rbt(148,110) student(52,110) staff(100,160) para(145,78) admin(55,78) -->
+          <line x1="100" y1="60" x2="148" y2="110" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="60" x2="52" y2="110" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="60" x2="100" y2="160" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="60" x2="145" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="60" x2="55" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="148" y1="110" x2="52" y2="110" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="148" y1="110" x2="100" y2="160" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="148" y1="110" x2="145" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="52" y1="110" x2="100" y2="160" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="52" y1="110" x2="55" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="160" x2="145" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="100" y1="160" x2="55" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+          <line x1="145" y1="78" x2="55" y2="78" stroke="#A8D5D8" stroke-width="1"/>
+        </svg>
+        <div class="int-nodes">
+          <div class="int-node" style="left:100px;top:60px">TEACHER</div>
+          <div class="int-node" style="left:148px;top:110px">RBT</div>
+          <div class="int-node" style="left:52px;top:110px">STUDENT</div>
+          <div class="int-node" style="left:100px;top:160px;background:var(--teal-mid)">STAFF</div>
+          <div class="int-node" style="left:145px;top:78px;background:var(--teal-light);color:var(--teal)">PARA</div>
+          <div class="int-node" style="left:55px;top:78px;background:var(--teal-light);color:var(--teal)">ADMIN</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:1.5rem;font-size:0.78rem;color:var(--gray);font-family:'DM Mono',monospace;font-style:italic;">
+    Source: Reilly &amp; Thoele (2025). School-Based Transdisciplinary Teaming. Behavior Analysis in Practice. | Choi &amp; Pak (2006).
+  </p>
+</div>
+
+<!-- ── PANEL: Tips ── -->
+<div class="panel" id="panel-tips">
+  <p class="section-label">Click each tip to expand</p>
+
+  <div class="tip-card" onclick="toggleTip(this)">
+    <div class="tip-header">
+      <div class="tip-num">1</div>
+      <div class="tip-title-wrap">
+        <div class="tip-title">Shift from Dyad Supervision to Classroom Ecology</div>
+        <div class="tip-subtitle">Step outside the RBT–student bubble</div>
+      </div>
+      <div class="tip-chevron">▾</div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-body-inner">
+        <p>Step outside the BCBA-RBT-student bubble and observe the whole classroom environment. Look at antecedents in the physical space, teacher interactions, peer dynamics, and routine structures.</p>
+        <ul class="tip-bullets">
+          <li>Conduct regular ecological observations — not just data checks on the student</li>
+          <li>Identify environmental variables (seating, transitions, noise, pacing) that affect behavior</li>
+          <li>Share findings with the full classroom team, not just the RBT</li>
+          <li>Use your data to inform classroom-wide adjustments, not just individual plans</li>
+        </ul>
+        <div class="research-pill">📄 Reilly & Thoele (2025) · Behavior Analysis in Practice</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card" onclick="toggleTip(this)">
+    <div class="tip-header">
+      <div class="tip-num">2</div>
+      <div class="tip-title-wrap">
+        <div class="tip-title">Provide Professional Development, Not Just Behavior Plans</div>
+        <div class="tip-subtitle">Position yourself as an instructional partner</div>
+      </div>
+      <div class="tip-chevron">▾</div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-body-inner">
+        <p>Teachers implement strategies daily. If they don't understand the "why" behind a plan, fidelity drops. Position yourself as a capacity-builder, not just a plan-writer.</p>
+        <ul class="tip-bullets">
+          <li>Offer brief, practical in-service training on behavioral principles in plain language</li>
+          <li>Avoid ABA jargon — research shows technical language reduces teacher buy-in</li>
+          <li>Co-develop strategies that fit naturally into existing classroom routines</li>
+          <li>Acknowledge what teachers already do well and build from there</li>
+        </ul>
+        <div class="research-pill">📄 PMC (2022) · BCBA School Fidelity Study</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card" onclick="toggleTip(this)">
+    <div class="tip-header">
+      <div class="tip-num">3</div>
+      <div class="tip-title-wrap">
+        <div class="tip-title">Use an Intentional Fading Model</div>
+        <div class="tip-subtitle">Transfer knowledge into the classroom</div>
+      </div>
+      <div class="tip-chevron">▾</div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-body-inner">
+        <p>The goal should be to transfer knowledge into the classroom ecosystem — not to remain the permanent expert. Plan from the start for how your role will fade as teacher capacity grows.</p>
+        <ul class="tip-bullets">
+          <li>Begin by modeling interventions directly with the student alongside the teacher</li>
+          <li>Gradually shift implementation to the teacher while you observe and coach</li>
+          <li>Create clear milestones for when teacher-led implementation is the primary approach</li>
+          <li>Build independence in the school, not reliance on the agency</li>
+        </ul>
+        <div class="research-pill">📄 Traub et al. (2017) · Fading Support Models</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card" onclick="toggleTip(this)">
+    <div class="tip-header">
+      <div class="tip-num">4</div>
+      <div class="tip-title-wrap">
+        <div class="tip-title">Assess Social Validity — Does the Plan Fit the Classroom?</div>
+        <div class="tip-subtitle">Co-create with contextual fit in mind</div>
+      </div>
+      <div class="tip-chevron">▾</div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-body-inner">
+        <p>A behavior plan that works in theory but is unworkable for a teacher with 20 other students will never be implemented with fidelity. Co-create plans with contextual fit from the start.</p>
+        <ul class="tip-bullets">
+          <li>Ask teachers directly: "Is this feasible in your day?"</li>
+          <li>Adapt goals and procedures to match classroom rhythms and structures</li>
+          <li>Revisit plans regularly with the whole team — not just the RBT</li>
+          <li>Treat teacher feedback as data, not resistance</li>
+        </ul>
+        <div class="research-pill">📄 PMC (2025) · BCBA–Teacher Collaboration Factors</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-card" onclick="toggleTip(this)">
+    <div class="tip-header">
+      <div class="tip-num">5</div>
+      <div class="tip-title-wrap">
+        <div class="tip-title">Learn the Language of Education</div>
+        <div class="tip-subtitle">Become fluent in the school's systems</div>
+      </div>
+      <div class="tip-chevron">▾</div>
+    </div>
+    <div class="tip-body">
+      <div class="tip-body-inner">
+        <p>BCBAs often enter schools without training in educational law, IEP systems, PBIS tiers, or school culture. Fluency in these systems is essential to becoming a true ecosystem partner.</p>
+        <ul class="tip-bullets">
+          <li>Study IDEA, FAPE, LRE, and other legal frameworks governing your student's placement</li>
+          <li>Participate in IEP meetings as a collaborative team member, not just a service provider</li>
+          <li>Engage with PBIS teams and Tier 1/2 supports — not just Tier 3 crisis intervention</li>
+          <li>Learn each school's culture, norms, and staff dynamics before proposing changes</li>
+        </ul>
+        <div class="research-pill">📄 Layden et al. (2024) · Roles & Responsibilities Survey</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANEL: Reflection ── -->
+<div class="panel" id="panel-reflection">
+  <p class="section-label">Fieldwork Reflection Questions — write your responses below</p>
+
+  <div class="reflection-card">
+    <h3><span class="q-num">Q1</span> The Siloed Dynamic</h3>
+    <textarea placeholder="Think about a school placement you've observed or worked in. How did the BCBA or RBT interact (or not interact) with the broader classroom team? What did you notice about whether the ABA services felt 'implanted' or 'integrated'?"></textarea>
+  </div>
+
+  <div class="reflection-card">
+    <h3><span class="q-num">Q2</span> Teacher Relationships</h3>
+    <textarea placeholder="Have you seen examples of a BCBA building a strong relationship with a classroom teacher — or the opposite? What made the difference? What got in the way?"></textarea>
+  </div>
+
+  <div class="reflection-card">
+    <h3><span class="q-num">Q3</span> Social Validity</h3>
+    <textarea placeholder="Describe a behavior plan you've seen implemented (or heard about). Did it seem like a good fit for the classroom environment? If not, what would have needed to change for it to be more contextually valid?"></textarea>
+  </div>
+
+  <div class="reflection-card">
+    <h3><span class="q-num">Q4</span> The Fading Model</h3>
+    <textarea placeholder="What does a successful 'fading' look like to you — where the BCBA gradually transfers skills to the classroom teacher? What conditions need to be in place for that to happen?"></textarea>
+  </div>
+
+  <div class="reflection-card">
+    <h3><span class="q-num">Q5</span> Your Role as a Future BCBA</h3>
+    <textarea placeholder="Which of the 5 tips feels most challenging to you personally? What would you need — in terms of training, support, or mindset — to practice that tip in your own future work?"></textarea>
+  </div>
+</div>
+
+<!-- ── PANEL: Self-Rating ── -->
+<div class="panel" id="panel-rating">
+  <div class="rating-intro">
+    Rate yourself on each behavior below. <strong>1 = Not yet on my radar · 5 = I do this consistently.</strong> This is a learning tool, not an evaluation — be as honest as you can.
+  </div>
+  <p class="section-label">Self-Assessment Scale</p>
+
+  <div id="rating-items"></div>
+
+  <div class="score-summary">
+    <div class="score-big" id="score-display">–</div>
+    <div class="score-label">out of 50 points</div>
+    <div class="score-bar-track"><div class="score-bar-fill" id="score-bar"></div></div>
+    <div class="score-message" id="score-message">Rate all 10 items to see your summary.</div>
+  </div>
+</div>
+
+<!-- ── PANEL: Resources ── -->
+<div class="panel" id="panel-resources">
+  <p class="section-label">Key Research & Tools</p>
+
+  <div class="resource-card">
+    <div class="resource-icon">📄</div>
+    <div class="resource-info">
+      <div class="resource-meta">Reilly & Thoele · 2025 · Behavior Analysis in Practice</div>
+      <div class="resource-title">School-Based Transdisciplinary Teaming to Maximize Behavioral Supports</div>
+      <div class="resource-desc">Directly addresses the siloed/additive model and proposes a transdisciplinary framework for BCBAs. Foundational for this topic.</div>
+      <a class="resource-link" href="https://link.springer.com/article/10.1007/s40617-025-01054-z" target="_blank">Open article ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">📄</div>
+    <div class="resource-info">
+      <div class="resource-meta">Layden et al. · 2024 · SAGE Journals</div>
+      <div class="resource-title">Roles and Responsibilities of School-Based Behavior Analysts: A Survey</div>
+      <div class="resource-desc">Documents gaps in BCBAs' school-system knowledge; argues for expanded role definitions beyond traditional clinical training.</div>
+      <a class="resource-link" href="https://journals.sagepub.com/doi/10.1177/10983007231200528" target="_blank">Open article ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">📄</div>
+    <div class="resource-info">
+      <div class="resource-meta">PMC · 2025 · PubMed Central</div>
+      <div class="resource-title">Navigating Collaboration: Factors Influencing Special Education Teachers' Relationships with BCBAs</div>
+      <div class="resource-desc">Teachers report BCBAs ignore classroom context and provide non-feasible recommendations. Highlights social validity as a critical gap.</div>
+      <a class="resource-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11706814/" target="_blank">Open article ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">📄</div>
+    <div class="resource-info">
+      <div class="resource-meta">PMC · 2022 · PubMed Central</div>
+      <div class="resource-title">Board Certified Behavior Analysts and School Fidelity of ABA Services</div>
+      <div class="resource-desc">Finds ABA is routinely implemented without fidelity in schools due to structural and training issues — not just individual skill gaps.</div>
+      <a class="resource-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9788712/" target="_blank">Open article ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">📄</div>
+    <div class="resource-info">
+      <div class="resource-meta">PMC · Behavior-Analytic Language Study</div>
+      <div class="resource-title">Behavior Analysis Goes to School: Teacher Acceptability of Behavior-Analytic Language</div>
+      <div class="resource-desc">Shows ABA jargon reduces teacher acceptability of plans. Makes the case for plain language and accessible communication.</div>
+      <a class="resource-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7900384/" target="_blank">Open article ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">🎓</div>
+    <div class="resource-info">
+      <div class="resource-meta">Navigating Behavior Change · Practitioner Training</div>
+      <div class="resource-title">BCBA School-Based Consultation Tools & Courses</div>
+      <div class="resource-desc">ACE-approved courses designed to help BCBAs consult at Tier 1, strengthen teacher capacity, and bridge the ABA–education gap.</div>
+      <a class="resource-link" href="https://www.navigatingbehaviorchange.com/BCBA-Solutions" target="_blank">Visit site ↗</a>
+    </div>
+  </div>
+
+  <div class="resource-card">
+    <div class="resource-icon">🎓</div>
+    <div class="resource-info">
+      <div class="resource-meta">Master ABA · Online Resource</div>
+      <div class="resource-title">Understanding the Role of a BCBA in an Educational Setting</div>
+      <div class="resource-desc">Practical overview of how BCBAs can expand their school role beyond individual behavior management to whole-classroom integration.</div>
+      <a class="resource-link" href="https://masteraba.com/understanding-the-role-of-a-bcba-in-an-educational-setting/" target="_blank">Read more ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <em>"The goal is not just to manage one student's behavior — it is to strengthen the entire learning community."</em>
+  Based on Reilly & Thoele (2025), Layden et al. (2024), and related literature on school-based BCBA practice.
+</div>
+
+<script>
+  // ── Panel navigation ──
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // ── Tips expand/collapse ──
+  function toggleTip(card) {
+    card.classList.toggle('open');
+  }
+
+  // ── Self-rating items ──
+  const ratingItems = [
+    { tip: "Tip 1", text: "I observe the full classroom ecology, not just the student receiving services." },
+    { tip: "Tip 1", text: "I share ecological observations with the full classroom team." },
+    { tip: "Tip 2", text: "I provide professional development to teachers in plain, accessible language." },
+    { tip: "Tip 2", text: "I avoid ABA jargon when communicating with teachers and school staff." },
+    { tip: "Tip 3", text: "I build explicit fading plans to gradually transfer skills to classroom teachers." },
+    { tip: "Tip 3", text: "I work toward building school independence, not dependence on the agency." },
+    { tip: "Tip 4", text: "I regularly check with teachers on whether behavior plans are feasible to implement." },
+    { tip: "Tip 4", text: "I treat teacher feedback about plans as useful data, not resistance." },
+    { tip: "Tip 5", text: "I am familiar with IDEA, IEP process, PBIS tiers, and educational law basics." },
+    { tip: "Tip 5", text: "I actively participate in school-wide systems (e.g. PBIS teams), not just Tier 3 work." },
+  ];
+
+  const ratings = new Array(ratingItems.length).fill(0);
+
+  const container = document.getElementById('rating-items');
+  ratingItems.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'rating-item';
+    div.innerHTML = `
+      <div class="rating-item-header">
+        <div class="rating-item-label">${item.text}</div>
+        <div class="rating-item-tip">${item.tip}</div>
+      </div>
+      <div class="rating-scale">
+        <span class="rating-scale-label">Not yet</span>
+        <div class="stars" id="stars-${i}">
+          ${[1,2,3,4,5].map(v => `<div class="star" onclick="setRating(${i}, ${v})" data-val="${v}">${v}</div>`).join('')}
+        </div>
+        <span class="rating-scale-label">Consistently</span>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  function setRating(itemIdx, val) {
+    ratings[itemIdx] = val;
+    const stars = document.querySelectorAll(`#stars-${itemIdx} .star`);
+    stars.forEach(s => {
+      const sv = parseInt(s.dataset.val);
+      s.className = 'star' + (sv <= val ? ` active active-${sv}` : '');
+    });
+    updateScore();
+  }
+
+  function updateScore() {
+    const filled = ratings.filter(r => r > 0).length;
+    if (filled < ratingItems.length) {
+      document.getElementById('score-display').textContent = '–';
+      document.getElementById('score-message').textContent = `${ratingItems.length - filled} item(s) remaining.`;
+      document.getElementById('score-bar').style.width = '0%';
+      return;
+    }
+    const total = ratings.reduce((a, b) => a + b, 0);
+    const pct = (total / 50) * 100;
+    document.getElementById('score-display').textContent = total;
+    document.getElementById('score-bar').style.width = pct + '%';
+    let msg = '';
+    if (total <= 20) msg = "Early stages — lots of growth ahead. Use this as a starting point for your learning goals.";
+    else if (total <= 32) msg = "Developing — you're building awareness. Focus on 1–2 tips to deepen in your next placement.";
+    else if (total <= 42) msg = "Strong foundation — you're engaging with these ideas. Keep pushing toward full ecosystem integration.";
+    else msg = "Excellent integration — you're modeling what school-based BCBA practice can look like at its best.";
+    document.getElementById('score-message').textContent = msg;
+  }
+</script>
+</body>
+</html>
