@@ -561,6 +561,222 @@
   }
   .resource-link:hover { color: var(--teal); text-decoration: underline; }
 
+  /* ── Collaboration panel ── */
+  .collab-intro {
+    background: var(--teal-dark);
+    color: var(--white);
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--amber);
+  }
+  .collab-intro h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .collab-intro p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--teal-light);
+  }
+
+  /* Comparison table */
+  .collab-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(26,107,114,0.1);
+  }
+  .collab-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    min-width: 580px;
+  }
+  .collab-table th {
+    padding: 0.9rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 3px solid;
+  }
+  .collab-table th.th-dim { background: #f0f0f0; color: var(--gray); border-color: var(--gray-light); }
+  .collab-table th.th-multi { background: #FFF3E0; color: #B05000; border-color: #E8A020; }
+  .collab-table th.th-inter { background: var(--teal-pale); color: var(--teal-dark); border-color: var(--teal-mid); }
+  .collab-table th.th-trans { background: var(--teal-dark); color: var(--white); border-color: var(--amber); }
+
+  .collab-table td {
+    padding: 0.85rem 1rem;
+    font-size: 0.87rem;
+    line-height: 1.5;
+    vertical-align: top;
+    border-bottom: 1px solid var(--teal-pale);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .collab-table tr:last-child td { border-bottom: none; }
+  .collab-table td.td-dim {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--teal-dark);
+    background: #f7f7f5;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .collab-table td.td-multi { color: #6B3A00; }
+  .collab-table td.td-inter { color: var(--teal-dark); }
+  .collab-table td.td-trans { color: #0F4A50; font-weight: 500; }
+  .collab-table tr:hover td:not(.td-dim) { background: var(--cream); }
+
+  /* Expand-on-click row detail */
+  .row-detail {
+    display: none;
+    background: #FAFDF8;
+    border-left: 4px solid var(--amber);
+    padding: 1rem 1.2rem;
+    font-size: 0.84rem;
+    color: #444;
+    line-height: 1.6;
+    cursor: default;
+  }
+  .row-detail.open { display: table-row; }
+  .row-detail td { padding: 0.7rem 1rem 1rem 1.4rem; cursor: default; }
+  .row-detail td:hover { background: #FAFDF8; }
+
+  /* Model selector tabs */
+  .model-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border: 2px solid var(--teal-pale);
+    overflow: hidden;
+  }
+  .model-tab {
+    flex: 1;
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    background: var(--white);
+    color: var(--gray);
+    border-right: 1px solid var(--teal-pale);
+  }
+  .model-tab:last-child { border-right: none; }
+  .model-tab.active-multi { background: #FFF3E0; color: #B05000; font-weight: 600; }
+  .model-tab.active-inter { background: var(--teal-pale); color: var(--teal-dark); font-weight: 600; }
+  .model-tab.active-trans { background: var(--teal-dark); color: var(--white); font-weight: 600; }
+  .model-tab:hover:not(.active-multi):not(.active-inter):not(.active-trans) { background: var(--cream); }
+
+  /* Spotlight card */
+  .model-spotlight {
+    display: none;
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 12px rgba(26,107,114,0.07);
+    animation: fadeUp 0.3s ease;
+  }
+  .model-spotlight.visible { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .spotlight-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--teal-pale);
+  }
+  .spotlight-emoji { font-size: 2.2rem; line-height: 1; }
+  .spotlight-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--teal);
+    margin-bottom: 0.1rem;
+  }
+  .spotlight-analogy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .spotlight-body { font-size: 0.9rem; line-height: 1.65; color: #444; }
+  .spotlight-body strong { color: var(--teal-dark); }
+  .spotlight-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+  }
+  .spotlight-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.05em;
+  }
+  .tag-multi { background: #FFF3E0; color: #B05000; }
+  .tag-inter { background: var(--teal-pale); color: var(--teal); }
+  .tag-trans { background: var(--teal-dark); color: var(--white); }
+
+  /* Resource mini-cards for collab section */
+  .collab-resources {
+    margin-top: 2rem;
+  }
+  .collab-res-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 600px) { .collab-res-grid { grid-template-columns: 1fr; } }
+  .collab-res-card {
+    background: var(--white);
+    border: 1px solid var(--teal-pale);
+    padding: 1rem 1.1rem;
+    box-shadow: 0 1px 6px rgba(26,107,114,0.05);
+  }
+  .collab-res-card .res-authors {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+  .collab-res-card .res-title {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--teal);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .collab-res-card .res-note {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.45;
+  }
+  .hint-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.64rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+
   /* ── Footer ── */
   .footer {
     background: var(--teal-dark);
@@ -597,6 +813,7 @@
   <div class="nav-tab" onclick="showPanel('tips')">5 Tips</div>
   <div class="nav-tab" onclick="showPanel('reflection')">Reflection</div>
   <div class="nav-tab" onclick="showPanel('rating')">Self-Rating</div>
+  <div class="nav-tab" onclick="showPanel('collab')">Crossing Disciplinary Boundaries</div>
   <div class="nav-tab" onclick="showPanel('resources')">Resources</div>
 </nav>
 
@@ -828,6 +1045,213 @@
   </div>
 </div>
 
+<!-- ── PANEL: Crossing Disciplinary Boundaries ── -->
+<div class="panel" id="panel-collab">
+  <div class="collab-intro">
+    <h2>Crossing Disciplinary Boundaries</h2>
+    <p>Not all teamwork looks the same. The terms <em>multidisciplinary</em>, <em>interdisciplinary</em>, and <em>transdisciplinary</em> describe meaningfully different levels of professional integration — and choosing the right approach shapes student outcomes. Explore the interactive table and model spotlights below to understand the key distinctions.</p>
+  </div>
+
+  <p class="section-label">Comparison Table — Click any row to expand details</p>
+  <p class="hint-text">Tap a row for deeper explanation · Scroll right on mobile</p>
+
+  <div class="collab-table-wrap">
+    <table class="collab-table" id="collabTable">
+      <thead>
+        <tr>
+          <th class="th-dim">Dimension</th>
+          <th class="th-multi">🥗 Multidisciplinary</th>
+          <th class="th-inter">🍲 Interdisciplinary</th>
+          <th class="th-trans">🎂 Transdisciplinary</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="table-row" onclick="toggleRow('r1')">
+          <td class="td-dim">How professionals work</td>
+          <td class="td-multi">Independently, in parallel; each stays within their own disciplinary lane</td>
+          <td class="td-inter">Together but with identifiable disciplinary roles; goals are shared</td>
+          <td class="td-trans">Roles blur intentionally; knowledge and skills are actively shared across disciplines</td>
+        </tr>
+        <tr class="row-detail" id="r1"><td colspan="4">💡 <strong>Think of it this way:</strong> In a multidisciplinary team, the SLP writes their goals, the OT writes theirs, and the special educator writes theirs — all for the same student, but independently. In an interdisciplinary team they meet and coordinate. In a transdisciplinary team, the SLP teaches the teacher how to embed communication strategies during math, and the BCBA teaches the SLP how to collect data with precision — roles expand and release. <em>(Bowman et al., 2021; Reilly et al., 2025)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r2')">
+          <td class="td-dim">Communication frequency</td>
+          <td class="td-multi">Minimal; mainly to coordinate or report — ongoing communication not essential</td>
+          <td class="td-inter">More frequent; team meetings to develop shared goals and review progress</td>
+          <td class="td-trans">Continuous and deliberate; uses common jargon-free vocabulary across all disciplines</td>
+        </tr>
+        <tr class="row-detail" id="r2"><td colspan="4">💡 In multidisciplinary models, communication failures are common because updates aren't structurally required. Research shows that poor communication — not just skill gaps — is linked directly to poor student outcomes and even patient safety events. Transdisciplinary teams address this with scheduled team rounds, shared data systems, and email groups. <em>(Bowman et al., 2021; Castro-Kemp et al., 2021)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r3')">
+          <td class="td-dim">Goal development</td>
+          <td class="td-multi">Each professional sets goals independently for their domain</td>
+          <td class="td-inter">Professionals develop goals cooperatively after independent assessments</td>
+          <td class="td-trans">Unified, holistic goals co-created by the full team including family; no domain silos</td>
+        </tr>
+        <tr class="row-detail" id="r3"><td colspan="4">💡 Transdisciplinary goal-setting answers: <em>What should we change? How should we change it? How will we know it worked?</em> — and all disciplines answer together. This is especially critical for students with ASD or IDD whose social, communication, behavioral, and academic needs are deeply intertwined. <em>(Reilly et al., 2025; Bowman et al., 2021)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r4')">
+          <td class="td-dim">Professional roles</td>
+          <td class="td-multi">Strictly maintained; each professional operates within their own boundaries</td>
+          <td class="td-inter">Roles are preserved but perspectives broaden beyond disciplinary limits</td>
+          <td class="td-trans">Role release + role expansion: professionals teach their skills to teammates and learn from them</td>
+        </tr>
+        <tr class="row-detail" id="r4"><td colspan="4">💡 <strong>Role release</strong> means deliberately sharing your expertise with others so they can implement it (e.g., a BCBA teaches a teacher to use a token economy). <strong>Role expansion</strong> means learning new skills beyond your traditional scope (e.g., a BCBA learning how PBIS tiers map to educational law). This is the defining feature of transdisciplinary practice. <em>(Bowman et al., 2021; Reilly et al., 2025)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r5')">
+          <td class="td-dim">Integration of expertise</td>
+          <td class="td-multi">Additive — contributions sit side by side but don't influence each other</td>
+          <td class="td-inter">Coordinated — expertise is combined to produce shared plans</td>
+          <td class="td-trans">Synergistic — a unified framework emerges that couldn't exist from any one discipline alone</td>
+        </tr>
+        <tr class="row-detail" id="r5"><td colspan="4">💡 The analogy used in the literature is vivid: multidisciplinary = a <strong>salad</strong> (ingredients distinct and separate), interdisciplinary = a <strong>soup</strong> (ingredients blend but remain identifiable), transdisciplinary = a <strong>cake</strong> (ingredients fully combined into something new). <em>(Choi &amp; Pak, 2006, as cited in Bowman et al., 2021)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r6')">
+          <td class="td-dim">Decision-making</td>
+          <td class="td-multi">Each professional makes autonomous decisions within their area</td>
+          <td class="td-inter">Joint decisions on goals; independent implementation within disciplines</td>
+          <td class="td-trans">Collective ownership — all decisions, data, programs, and outcomes are shared</td>
+        </tr>
+        <tr class="row-detail" id="r6"><td colspan="4">💡 Transdisciplinary collective ownership means if an intervention isn't working, the whole team owns that — not just the BCBA or the teacher. This promotes accountability without blame, and research links it to reduced professional conflict and burnout. <em>(Bowman et al., 2021; Strogilos et al., 2011)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r7')">
+          <td class="td-dim">Best suited for</td>
+          <td class="td-multi">Situations requiring diverse expert input without deep integration</td>
+          <td class="td-inter">Students with mild-to-moderate disabilities in inclusive settings with moderate complexity</td>
+          <td class="td-trans">Students with complex, intersecting needs (ASD, IDD, severe disabilities) requiring whole-team integration</td>
+        </tr>
+        <tr class="row-detail" id="r7"><td colspan="4">💡 Evidence shows integrated service models (closest to transdisciplinary) are superior for students with profound/multiple learning difficulties, while classroom-based collaborative approaches are most effective for mild-moderate disabilities in inclusive settings. Context matters: the "best" model depends on population, resources, and organizational support. <em>(Selanikyo et al., 2017; Strogilos et al., 2011; Castro-Kemp et al., 2021)</em></td></tr>
+
+        <tr class="table-row" onclick="toggleRow('r8')">
+          <td class="td-dim">Common barriers</td>
+          <td class="td-multi">Eclecticism risk; siloed practice; no shared accountability</td>
+          <td class="td-inter">Professionals work together to plan but may revert to silos during implementation</td>
+          <td class="td-trans">Requires substantial time, shared management, training, and trust to implement well</td>
+        </tr>
+        <tr class="row-detail" id="r8"><td colspan="4">💡 Multidisciplinary models risk "eclecticism" — a haphazard mix of interventions with no coherent evidence base. Research warns that multidisciplinary practice <em>without effective collaboration</em> may actually be counterproductive. Transdisciplinary models face real structural barriers (time, organizational support, funding), but these are addressable with intentional planning. <em>(Bowman et al., 2021; Salminen et al., 2024)</em></td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Model Spotlights -->
+  <p class="section-label">Model Spotlights — Select a model to explore</p>
+  <div class="model-tabs">
+    <div class="model-tab" id="tab-multi" onclick="showModel('multi')">🥗 Multidisciplinary</div>
+    <div class="model-tab" id="tab-inter" onclick="showModel('inter')">🍲 Interdisciplinary</div>
+    <div class="model-tab" id="tab-trans" onclick="showModel('trans')">🎂 Transdisciplinary</div>
+  </div>
+
+  <div class="model-spotlight" id="spot-multi">
+    <div class="spotlight-header">
+      <div class="spotlight-emoji">🥗</div>
+      <div>
+        <div class="spotlight-name">Multidisciplinary</div>
+        <div class="spotlight-analogy">Analogy: The Salad — ingredients distinct &amp; separate</div>
+      </div>
+    </div>
+    <div class="spotlight-body">
+      <p>In a multidisciplinary model, <strong>professionals work in parallel</strong> — each operating within their own discipline's boundaries. A BCBA writes a behavior plan, the SLP writes communication goals, the OT writes sensory goals. These are additive, not integrative. Information may be exchanged to coordinate care, but frequent ongoing communication isn't seen as essential because each professional's plan doesn't fundamentally change based on what another discipline does.</p>
+      <p style="margin-top:0.7rem">While this offers more perspectives than a single-discipline approach, the narrow discipline-specific viewpoint can <strong>inhibit a holistic understanding</strong> of complex students. Without a shared framework, this model risks sliding into "eclecticism" — a mix of interventions that may be individually evidence-based but incoherent as a package.</p>
+      <div class="spotlight-tags">
+        <span class="spotlight-tag tag-multi">Parallel practice</span>
+        <span class="spotlight-tag tag-multi">Additive contributions</span>
+        <span class="spotlight-tag tag-multi">Discipline-specific goals</span>
+        <span class="spotlight-tag tag-multi">Minimal communication</span>
+        <span class="spotlight-tag tag-multi">Siloed accountability</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="model-spotlight" id="spot-inter">
+    <div class="spotlight-header">
+      <div class="spotlight-emoji">🍲</div>
+      <div>
+        <div class="spotlight-name">Interdisciplinary</div>
+        <div class="spotlight-analogy">Analogy: The Soup — ingredients blend but remain identifiable</div>
+      </div>
+    </div>
+    <div class="spotlight-body">
+      <p>Interdisciplinary teams take a <strong>more comprehensive and integrative approach</strong>. Professionals conduct their own assessments independently, then come together to create shared goals and coordinate implementation. Distinct disciplinary roles are preserved while responsibilities and outcomes are shared.</p>
+      <p style="margin-top:0.7rem">This model requires more frequent interaction, and team members often expand their clinical perspectives <strong>beyond their own discipline's boundaries</strong>. Think of the BCBA and teacher meeting weekly to align on a student's goals — each still brings their own expertise to the table, but they're steering in the same direction. This is a significant upgrade from multidisciplinary, though true collaboration isn't yet achieved because professionals still implement independently.</p>
+      <div class="spotlight-tags">
+        <span class="spotlight-tag tag-inter">Shared goals</span>
+        <span class="spotlight-tag tag-inter">Coordinated roles</span>
+        <span class="spotlight-tag tag-inter">Regular team meetings</span>
+        <span class="spotlight-tag tag-inter">Joint goal-setting</span>
+        <span class="spotlight-tag tag-inter">Independent implementation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="model-spotlight" id="spot-trans">
+    <div class="spotlight-header">
+      <div class="spotlight-emoji">🎂</div>
+      <div>
+        <div class="spotlight-name">Transdisciplinary</div>
+        <div class="spotlight-analogy">Analogy: The Cake — ingredients fully merged into something new</div>
+      </div>
+    </div>
+    <div class="spotlight-body">
+      <p>Transdisciplinary collaboration <strong>synthesizes the expertise</strong> of every team member by intentionally blurring disciplinary boundaries. This means two defining features: <strong>role release</strong> (sharing your specialized knowledge so others can implement it) and <strong>role expansion</strong> (learning skills beyond your traditional scope). A BCBA might teach a classroom teacher to use a token economy with fidelity; a speech-language pathologist might learn to take precise behavioral data.</p>
+      <p style="margin-top:0.7rem">Knowledge is deliberately shared through frequent communication using a <strong>common, jargon-free vocabulary</strong>. This model demands mutual trust, respect, and a shared unity of purpose. The resulting product is greater than the sum of its individual parts — leading to holistic interventions that address the complex, intertwined needs of students with ASD and other developmental disabilities. Research consistently finds this approach most effective when structural supports (shared management, allocated planning time, coordination roles) are in place.</p>
+      <div class="spotlight-tags">
+        <span class="spotlight-tag tag-trans">Role release</span>
+        <span class="spotlight-tag tag-trans">Role expansion</span>
+        <span class="spotlight-tag tag-trans">Unified framework</span>
+        <span class="spotlight-tag tag-trans">Shared ownership</span>
+        <span class="spotlight-tag tag-trans">Jargon-free language</span>
+        <span class="spotlight-tag tag-trans">Best for complex needs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- References for this section -->
+  <div class="collab-resources">
+    <p class="section-label">Key References for This Section</p>
+    <div class="collab-res-grid">
+
+      <div class="collab-res-card">
+        <div class="res-authors">Bowman, Suarez &amp; Weiss · 2021 · Behavior Analysis in Practice</div>
+        <div class="res-title">Standards for Interprofessional Collaboration in the Treatment of Individuals with Autism</div>
+        <div class="res-note">Defines the collaboration spectrum (multi/inter/transdisciplinary), identifies common barriers, and proposes 8 evidence-informed standards for transdisciplinary practice including a self-assessment checklist.</div>
+      </div>
+
+      <div class="collab-res-card">
+        <div class="res-authors">Reilly, Crowell, Thoele, DeAngelo &amp; Bak · 2025 · Behavior Analysis in Practice</div>
+        <div class="res-title">School-Based Transdisciplinary Teaming to Maximize Behavioral Supports</div>
+        <div class="res-note">Adapts the transdisciplinary model specifically for school-based BCBAs. Introduces the Extend–Establish–Enrich–Expand–Exchange framework with practical case examples and curated resources.</div>
+      </div>
+
+      <div class="collab-res-card">
+        <div class="res-authors">Castro-Kemp &amp; Samuels · 2021 · Research in Developmental Disabilities</div>
+        <div class="res-title">Working Together: A Review of Cross-Sector Collaborative Practices for Children with SEND</div>
+        <div class="res-note">Scoping review identifying multi/inter/transdisciplinary traditions, the role of coordination structures, the ICF as a common framework, and school-based clinics as hubs for integrated service delivery.</div>
+      </div>
+
+      <div class="collab-res-card">
+        <div class="res-authors">Salminen et al. · 2024 · European Journal of Special Needs Education</div>
+        <div class="res-title">Professional Collaboration for Children with Neurodevelopmental Disorders: A Scoping Review</div>
+        <div class="res-note">Examines collaboration for children with ASD and ADHD in Finnish contexts. Highlights professional competition, conflicting professional views, and the critical importance of shared understanding and dialogic interaction.</div>
+      </div>
+
+      <div class="collab-res-card">
+        <div class="res-authors">Selanikyo, Yalon-Chamovitz &amp; Weintraub · 2017 · CJOT</div>
+        <div class="res-title">Collaborative Consultation for Participation of Students with IDD (Co-PID)</div>
+        <div class="res-note">Primary study demonstrating that combined in-service training with ongoing collaborative consultation (OT + teachers) significantly improved student participation outcomes versus training alone — a key evidence base for structured collaboration models.</div>
+      </div>
+
+      <div class="collab-res-card">
+        <div class="res-authors">Elicit Evidence Synthesis · 2024</div>
+        <div class="res-title">Evidence-Based Collaboration Models for Interdisciplinary Teams in Schools</div>
+        <div class="res-note">Systematic synthesis of 10 screened studies identifying collaboration models, team composition, implementation strategies, outcome evidence, and barriers across disability populations and geographic contexts.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- ── PANEL: Resources ── -->
 <div class="panel" id="panel-resources">
   <p class="section-label">Key Research & Tools</p>
@@ -905,7 +1329,9 @@
 
 <div class="footer">
   <em>"The goal is not just to manage one student's behavior — it is to strengthen the entire learning community."</em>
-  Based on Reilly & Thoele (2025), Layden et al. (2024), and related literature on school-based BCBA practice.
+  Based on Reilly et al. (2025), Bowman et al. (2021), Layden et al. (2024), Castro-Kemp &amp; Samuels (2021), and related literature on school-based BCBA practice and interdisciplinary collaboration.
+  <br><br>
+  <span style="color:var(--amber);font-family:'DM Serif Display',serif;font-size:0.95rem;font-style:italic;">Ana D. Dueñas, PhD, BCBA-D</span>
 </div>
 
 <script>
@@ -917,7 +1343,29 @@
     event.currentTarget.classList.add('active');
   }
 
-  // ── Tips expand/collapse ──
+  // ── Collab table row toggle ──
+  function toggleRow(id) {
+    const row = document.getElementById(id);
+    const isOpen = row.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.row-detail').forEach(r => r.classList.remove('open'));
+    if (!isOpen) row.classList.add('open');
+  }
+
+  // ── Model spotlight toggle ──
+  function showModel(model) {
+    ['multi','inter','trans'].forEach(m => {
+      document.getElementById('spot-' + m).classList.remove('visible');
+      const tab = document.getElementById('tab-' + m);
+      tab.className = 'model-tab';
+    });
+    const spot = document.getElementById('spot-' + model);
+    const tab = document.getElementById('tab-' + model);
+    spot.classList.add('visible');
+    tab.classList.add('active-' + model);
+  }
+
+  
   function toggleTip(card) {
     card.classList.toggle('open');
   }
